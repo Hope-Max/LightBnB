@@ -226,3 +226,21 @@ const addProperty = function(property) {
 
 }
 exports.addProperty = addProperty;
+
+
+  const addReservation = function(reservation) {
+    const queryString = `
+    INSERT INTO reservations (start_date, end_date, property_id, guest_id)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
+    `;
+    const values = [reservation.start_date, reservation.end_date, reservation.property_id, reservation.guest_id];
+
+    return pool
+      .query(queryString, values)
+      .then(res => res.rows[0])
+      .catch(err => console.log(err.message));
+
+  };
+
+  exports.addReservation = addReservation;
