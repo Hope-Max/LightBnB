@@ -87,5 +87,7 @@ const deleteReservation = function(data) {
   return $.ajax({
     method: "DELETE",
     url: `/api/reservations/${data}`
-  })
+  }).then(() => {
+    $('.delete-button').closest('article').remove();
+  });
 };
