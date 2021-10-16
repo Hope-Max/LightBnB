@@ -152,7 +152,7 @@ $(() => {
         <button>Create</button>
         <a id="reservation-form__cancel" href="#">Cancel</a>
       </div>
-      <div id="datatag" class="hidden"><p></p></div>
+      <div id="datatag" class="hidden"></div>
     </form>
   `);
   
@@ -167,7 +167,8 @@ $(() => {
     const propertyId = $(this).find("#datatag h4").text();
     const dataObj = { start_date: startDate, end_date: endDate, property_id: propertyId }
     submitReservation(dataObj)
-    .then(() => {
+    .then((res) => {
+      console.log(res);
       views_manager.show('listings');
     })
     .catch((error) => {
