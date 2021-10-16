@@ -87,7 +87,10 @@ module.exports = function(router, database) {
 
   router.delete('/reservations/:reservationId', (req, res) => {
     const reservationId = req.params.reservationId;
-    database.deleteReservation(reservationId);
+    database.deleteReservation(reservationId)
+    .then(() => {
+      res.send();
+    });
   });
 
   return router;
